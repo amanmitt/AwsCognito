@@ -35,12 +35,6 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 Cognito authentication = new Cognito(getApplicationContext());
                 authentication.userLogin(etUsername.getText().toString(), etPassword.getText().toString());
-
-                CognitoIdToken idToken = null;
-                CognitoAccessToken accessToken = null;
-                CognitoRefreshToken refreshToken = null;
-                CognitoUserSession cognitoUserSession = new CognitoUserSession(idToken, accessToken, refreshToken);
-                Log.d("Token", "onClick: " + cognitoUserSession.getIdToken());
             }
         });
     }

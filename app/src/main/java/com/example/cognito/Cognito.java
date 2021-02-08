@@ -23,14 +23,13 @@ import com.amazonaws.services.cognitoidentityprovider.model.SignUpResult;
 import static android.content.ContentValues.TAG;
 
 public class Cognito {
-    // ############################################################# Information about Cognito Pool
+
     private String poolID = "ap-south-1_vMQTuYATO";
     private String clientID = "13tpktl1kg1i74hfa0r5l3u31b";
-   // private String clientSecret = "Place_Your_ClientSecret";
-    private Regions awsRegion = Regions.AP_SOUTH_1;         // Place your Region
-    // ############################################################# End of Information about Cognito Pool
+    private String clientSecret = "3threlo6tkejc2uhhe28rorn5joi0jhffocmhcuheek7872g2ue";
+    private Regions awsRegion = Regions.AP_SOUTH_1;
     private final CognitoUserPool userPool;
-    private final CognitoUserAttributes userAttributes;       // Used for adding attributes to the user
+    private final CognitoUserAttributes userAttributes;
     private final Context appContext;
 //    SignUpHandler signUpCallback = new SignUpHandler() {
 
@@ -83,6 +82,9 @@ public class Cognito {
         @Override
         public void onSuccess(CognitoUserSession userSession, CognitoDevice newDevice) {
             Toast.makeText(appContext, "Sign in success", Toast.LENGTH_LONG).show();
+            Log.d("Token", "onSuccess: " + userSession.getIdToken());
+//            Log.d("Token", "onSuccess: " + userSession.getAccessToken());
+//            Log.d("Token", "onSuccess: " + userSession.getRefreshToken());
         }
 
         @Override
@@ -112,7 +114,7 @@ public class Cognito {
 
     public Cognito(Context context) {
         appContext = context;
-        userPool = new CognitoUserPool(context, this.poolID, this.clientID, null,this.awsRegion);
+        userPool = new CognitoUserPool(context, this.poolID, this.clientID, this.clientSecret,this.awsRegion);
         userAttributes = new CognitoUserAttributes();
     }
 
@@ -153,13 +155,13 @@ public class Cognito {
         this.clientID = clientID;
     }
 
-//    public String getClientSecret() {
-//        return clientSecret;
-//    }
-//
-//    public void setClientSecret(String clientSecret) {
-//        this.clientSecret = clientSecret;
-//    }
+    public String getClientSecret() {
+        return clientSecret;
+    }
+
+    public void setClientSecret(String clientSecret) {
+        this.clientSecret = clientSecret;
+    }
 
     public Regions getAwsRegion() {
         return awsRegion;
