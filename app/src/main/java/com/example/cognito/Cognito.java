@@ -33,7 +33,7 @@ public class Cognito {
     private final CognitoUserAttributes userAttributes;       // Used for adding attributes to the user
     private final Context appContext;
 //    SignUpHandler signUpCallback = new SignUpHandler() {
-//
+
 //        @Override
 //        public void onSuccess(CognitoUser cognitoUser, boolean userConfirmed, CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails) {
 //            // Sign-up was successful
@@ -49,15 +49,15 @@ public class Cognito {
 //                // The user has already been confirmed
 //            }
 //        }
-//
-//
+
+
 //        @Override
 //        public void onFailure(Exception exception) {
 //            Toast.makeText(appContext, "Sign-up failed", Toast.LENGTH_LONG).show();
 //            Log.d(TAG, "Sign-up failed: " + exception);
 //        }
 //    };
-//    // Callback handler for confirmSignUp API
+        // Callback handler for confirmSignUp API
 //    GenericHandler confirmationCallback = new GenericHandler() {
 //
 //        @Override
@@ -66,11 +66,11 @@ public class Cognito {
 //            Toast.makeText(appContext, "User Confirmed", Toast.LENGTH_LONG).show();
 //
 //        }
-//
+
 //        @Override
 //        public void onFailure(Exception exception) {
 //            // User confirmation failed. Check exception for the cause.
-//
+
 //        }
 //    };
     private String userPassword;                        // Used for Login
@@ -112,7 +112,7 @@ public class Cognito {
 
     public Cognito(Context context) {
         appContext = context;
-        userPool = new CognitoUserPool(context, this.poolID, this.clientID, "",this.awsRegion);
+        userPool = new CognitoUserPool(context, this.poolID, this.clientID, null,this.awsRegion);
         userAttributes = new CognitoUserAttributes();
     }
 
