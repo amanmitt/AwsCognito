@@ -12,6 +12,7 @@ import android.widget.Toast;
 public class HomeActivity extends AppCompatActivity {
 
     Button logoutButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +25,8 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Cognito authentication = new Cognito(getApplicationContext());
                 authentication.logout();
-                Toast.makeText(getApplicationContext(),"Logout Success",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),Login.class);
+                Toast.makeText(getApplicationContext(), "Logout Success", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), Login.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }

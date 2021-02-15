@@ -20,7 +20,6 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens.CognitoRefr
 public class Login extends AppCompatActivity {
 
     Button btnLogin;
-    Button btnLogout;
     EditText etUsername;
     EditText etPassword;
     SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
@@ -31,36 +30,27 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.layout);
 
         btnLogin = findViewById(R.id.btnLogin);
-        //  btnLogout = findViewById(R.id.btnLogout);
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
 
 
+        if(sharedPreferences.contains("token")){
+            Log.d("Shared", "onCreate: login");
+        }
+        else {
+            Log.d("Shared", "onCreate: logout");
+        }
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!etUsername.getText().toString().equals("") && !etPassword.getText().toString().equals("")) {
                     Cognito authentication = new Cognito(getApplicationContext());
                     authentication.userLogin(etUsername.getText().toString(), etPassword.getText().toString());
-                    //   Log.d("LOGIN", "onClick: " + ((MyApplication) getApplicationContext()).loginFlag);
-//                        if (((MyApplication) getApplicationContext()).loginFlag == 1) {
-//                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-//                        startActivity(intent);
-//                    }
                 } else {
                     Toast.makeText(getApplicationContext(), "Please fill in the details", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
-//        btnLogout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Cognito authentication = new Cognito(getApplicationContext());
-//                authentication.logout(etUsername.getText().toString());
-//            }
-//        });
 
 
     }

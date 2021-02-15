@@ -26,7 +26,7 @@ import java.util.concurrent.ForkJoinTask;
 
 import static android.content.ContentValues.TAG;
 
-public class Cognito {SharedPreferences sharedPreferences;
+public class Cognito {
 
     private final CognitoUserPool userPool;
     private final CognitoUserAttributes userAttributes;
@@ -38,6 +38,7 @@ public class Cognito {SharedPreferences sharedPreferences;
     private int mLoginFlag;
 
     private String userPassword;
+
     AuthenticationHandler authenticationHandler = new AuthenticationHandler() {
         @Override
         public void authenticationChallenge(ChallengeContinuation continuation) {
@@ -48,6 +49,7 @@ public class Cognito {SharedPreferences sharedPreferences;
             Toast.makeText(appContext, "Sign in success", Toast.LENGTH_SHORT).show();
             Log.d("Token", "onSuccess: " + userSession.getIdToken().getJWTToken());
 
+            SharedPreferences sharedPreferences = appContext.getSharedPreferences("login",Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("token",userSession.getIdToken().getJWTToken());
             editor.apply();
@@ -93,9 +95,6 @@ public class Cognito {SharedPreferences sharedPreferences;
     }
 
     public void logout() {
-//        Intent intent = new Intent(appContext,Login.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        appContext.startActivity(intent);
         CognitoUser cognitoUser = userPool.getCurrentUser();
         cognitoUser.signOut();
     }
