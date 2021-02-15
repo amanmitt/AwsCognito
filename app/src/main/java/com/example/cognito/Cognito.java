@@ -1,6 +1,8 @@
 package com.example.cognito;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -20,17 +22,20 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHan
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidentityprovider.model.SignUpResult;
 
+import java.util.concurrent.ForkJoinTask;
+
 import static android.content.ContentValues.TAG;
 
-public class Cognito {
+public class Cognito {SharedPreferences sharedPreferences;
 
+    private final CognitoUserPool userPool;
+    private final CognitoUserAttributes userAttributes;
+    private final Context appContext;
     private String poolID = "ap-south-1_vMQTuYATO";
     private String clientID = "13tpktl1kg1i74hfa0r5l3u31b";
     private String clientSecret = "3threlo6tkejc2uhhe28rorn5joi0jhffocmhcuheek7872g2ue";
     private Regions awsRegion = Regions.AP_SOUTH_1;
-    private final CognitoUserPool userPool;
-    private final CognitoUserAttributes userAttributes;
-    private final Context appContext;
+    private int mLoginFlag;
 
     private String userPassword;
     AuthenticationHandler authenticationHandler = new AuthenticationHandler() {
@@ -42,6 +47,14 @@ public class Cognito {
         public void onSuccess(CognitoUserSession userSession, CognitoDevice newDevice) {
             Toast.makeText(appContext, "Sign in success", Toast.LENGTH_SHORT).show();
             Log.d("Token", "onSuccess: " + userSession.getIdToken().getJWTToken());
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("token",userSession.getIdToken().getJWTToken());
+            editor.apply();
+
+            Intent intent = new Intent(appContext, HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            appContext.startActivity(intent);
         }
 
         @Override
@@ -60,11 +73,12 @@ public class Cognito {
             // Sign-in failed, check exception for the cause
             Toast.makeText(appContext, "Sign in Failure", Toast.LENGTH_SHORT).show();
         }
+
     };
 
     public Cognito(Context context) {
         appContext = context;
-        userPool = new CognitoUserPool(context, this.poolID, this.clientID, this.clientSecret,this.awsRegion);
+        userPool = new CognitoUserPool(context, this.poolID, this.clientID, this.clientSecret, this.awsRegion);
         userAttributes = new CognitoUserAttributes();
     }
 
@@ -78,10 +92,13 @@ public class Cognito {
         cognitoUser.getSessionInBackground(authenticationHandler);
     }
 
-//    public void logout(String userId){
-//        CognitoUser cognitoUser = userPool.getUser(userId);
-//        cognitoUser.signOut();
-//    }
+    public void logout() {
+//        Intent intent = new Intent(appContext,Login.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        appContext.startActivity(intent);
+        CognitoUser cognitoUser = userPool.getCurrentUser();
+        cognitoUser.signOut();
+    }
 
     public String getPoolID() {
         return poolID;

@@ -3,6 +3,7 @@ package com.example.cognito;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,7 @@ public class Login extends AppCompatActivity {
     Button btnLogout;
     EditText etUsername;
     EditText etPassword;
+    SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,23 +31,27 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.layout);
 
         btnLogin = findViewById(R.id.btnLogin);
-      //  btnLogout = findViewById(R.id.btnLogout);
+        //  btnLogout = findViewById(R.id.btnLogout);
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
 
 
-            btnLogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (!etUsername.getText().toString().equals("") && !etPassword.getText().toString().equals("")) {
-                        Cognito authentication = new Cognito(getApplicationContext());
-                        authentication.userLogin(etUsername.getText().toString(), etPassword.getText().toString());
-                    }
-                    else {
-                        Toast.makeText(getApplicationContext(), "Please fill in the details",Toast.LENGTH_SHORT).show();
-                    }
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!etUsername.getText().toString().equals("") && !etPassword.getText().toString().equals("")) {
+                    Cognito authentication = new Cognito(getApplicationContext());
+                    authentication.userLogin(etUsername.getText().toString(), etPassword.getText().toString());
+                    //   Log.d("LOGIN", "onClick: " + ((MyApplication) getApplicationContext()).loginFlag);
+//                        if (((MyApplication) getApplicationContext()).loginFlag == 1) {
+//                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+//                        startActivity(intent);
+//                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please fill in the details", Toast.LENGTH_SHORT).show();
                 }
-            });
+            }
+        });
 
 
 //        btnLogout.setOnClickListener(new View.OnClickListener() {

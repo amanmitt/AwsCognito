@@ -53,19 +53,4 @@
         android:textAllCaps="false"
         app:cornerRadius="20dp" />
 
-<!--    <com.google.android.material.button.MaterialButton-->
-<!--        android:id="@+id/btnLogout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="10dp"-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        android:layout_marginRight="10dp"-->
-<!--        android:layout_marginBottom="10dp"-->
-<!--        android:padding="15dp"-->
-<!--        android:shadowColor="@android:color/transparent"-->
-<!--        android:text="@string/log_in"-->
-<!--        android:textAllCaps="false"-->
-<!--        app:cornerRadius="20dp" />-->
-
-
 </LinearLayout>
