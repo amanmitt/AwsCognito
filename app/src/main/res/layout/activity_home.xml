@@ -7,13 +7,18 @@
     android:background="@color/white"
     tools:context=".HomeActivity">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="Logout"
-        android:textAllCaps="false" />
+        android:layout_marginRight="20dp"
+        android:text="@string/logout"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:cornerRadius="20dp"
+        app:rippleColor="#4ddbff" />
 
 </RelativeLayout>

@@ -22,6 +22,9 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHan
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidentityprovider.model.SignUpResult;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.concurrent.ForkJoinTask;
 
 import static android.content.ContentValues.TAG;
@@ -39,6 +42,24 @@ public class Cognito {
 
     private String userPassword;
 
+//    public static boolean hasActiveInternetConnection(Context context) {
+//        if (isNetworkAvailable(context)) {
+//            try {
+//                HttpURLConnection urlc = (HttpURLConnection) (new URL("http://www.google.com").openConnection());
+//                urlc.setRequestProperty("User-Agent", "Test");
+//                urlc.setRequestProperty("Connection", "close");
+//                urlc.setConnectTimeout(1500);
+//                urlc.connect();
+//                return (urlc.getResponseCode() == 200);
+//            } catch (IOException e) {
+//                Log.e("LOG_TAG", "Error checking internet connection", e);
+//            }
+//        } else {
+//            Log.d("LOG_TAG", "No network available!");
+//        }
+//        return false;
+//    }
+
     AuthenticationHandler authenticationHandler = new AuthenticationHandler() {
         @Override
         public void authenticationChallenge(ChallengeContinuation continuation) {
@@ -51,9 +72,8 @@ public class Cognito {
 
             SharedPreferences sharedPreferences = appContext.getSharedPreferences("login",Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("token",userSession.getIdToken().getJWTToken());
+            editor.putString("token", userSession.getIdToken().getJWTToken());
             editor.apply();
-
             Intent intent = new Intent(appContext, HomeActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             appContext.startActivity(intent);

@@ -2,6 +2,7 @@ package com.example.cognito;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,26 +21,27 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens.CognitoRefr
 public class Login extends AppCompatActivity {
 
     Button btnLogin;
+    Button btn1;
     EditText etUsername;
     EditText etPassword;
-    SharedPreferences sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        sharedPreferences = getApplicationContext().getSharedPreferences("login", Context.MODE_PRIVATE);
+//        if(sharedPreferences.getString("token",null) != null){
+//            Intent intent = new Intent(this, HomeActivity.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            startActivity(intent);
+//        }
         setContentView(R.layout.layout);
 
         btnLogin = findViewById(R.id.btnLogin);
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
 
-
-        if(sharedPreferences.contains("token")){
-            Log.d("Shared", "onCreate: login");
-        }
-        else {
-            Log.d("Shared", "onCreate: logout");
-        }
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +53,5 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 }
