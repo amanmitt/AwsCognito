@@ -21,4 +21,84 @@
         app:cornerRadius="20dp"
         app:rippleColor="#4ddbff" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total tasks : "
+        android:id="@+id/idTvTotalTasks"
+        android:layout_marginTop= "100dp"
+        android:textColor="@color/blue_base"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop= "100dp"
+        android:id="@+id/idTvTaskNumber"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/dark_blue"
+        android:layout_toRightOf="@+id/idTvTotalTasks"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zone name : "
+        android:id="@+id/idTvZone"
+        android:layout_marginTop= "150dp"
+        android:textColor="@color/blue_base"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop= "150dp"
+        android:id="@+id/idTvZoneName"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/dark_blue"
+        android:layout_toRightOf="@+id/idTvZone"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zone username :"
+        android:id="@+id/idTvZoneUser"
+        android:layout_marginTop= "200dp"
+        android:textColor="@color/blue_base"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop= "200dp"
+        android:id="@+id/idTvZoneUserName"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/dark_blue"
+        android:layout_toRightOf="@+id/idTvZoneUser"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zoca Id : "
+        android:id="@+id/idTvZoca"
+        android:layout_marginTop= "250dp"
+        android:textColor="@color/blue_base"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop= "250dp"
+        android:id="@+id/idTvZocaId"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/dark_blue"
+        android:layout_toRightOf="@+id/idTvZoca"
+        android:textSize="20dp"/>
+
 </RelativeLayout>
