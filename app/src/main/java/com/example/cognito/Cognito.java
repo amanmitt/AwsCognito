@@ -68,7 +68,7 @@ public class Cognito {
             Toast.makeText(appContext, "Sign in success", Toast.LENGTH_SHORT).show();
             Log.d("Token", "onSuccess: " + userSession.getIdToken().getJWTToken());
 
-            SharedPreferences sharedPreferences = appContext.getSharedPreferences("login",Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = appContext.getSharedPreferences("login", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("token", userSession.getIdToken().getJWTToken());
             editor.apply();
@@ -93,7 +93,7 @@ public class Cognito {
         @Override
         public void onFailure(Exception exception) {
             // Sign-in failed, check exception for the cause
-            Toast.makeText(appContext, "Sign in Failure", Toast.LENGTH_SHORT).show();
+            Toast.makeText(appContext, "Incorrect Email or Password", Toast.LENGTH_SHORT).show();
         }
 
     };
