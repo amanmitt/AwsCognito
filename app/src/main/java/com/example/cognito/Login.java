@@ -21,26 +21,19 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens.CognitoRefr
 public class Login extends AppCompatActivity {
 
     Button btnLogin;
-    Button btn1;
     EditText etUsername;
     EditText etPassword;
-    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        sharedPreferences = getApplicationContext().getSharedPreferences("login", Context.MODE_PRIVATE);
-//        if(sharedPreferences.getString("token",null) != null){
-//            Intent intent = new Intent(this, HomeActivity.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            startActivity(intent);
-//        }
         setContentView(R.layout.layout);
 
         btnLogin = findViewById(R.id.btnLogin);
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
+        etUsername.requestFocus();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,9 +48,4 @@ public class Login extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        finishAndRemoveTask();
-//    }
 }

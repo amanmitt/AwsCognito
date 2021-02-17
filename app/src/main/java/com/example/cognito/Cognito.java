@@ -38,8 +38,6 @@ public class Cognito {
     private String clientID = "13tpktl1kg1i74hfa0r5l3u31b";
     private String clientSecret = "3threlo6tkejc2uhhe28rorn5joi0jhffocmhcuheek7872g2ue";
     private Regions awsRegion = Regions.AP_SOUTH_1;
-    private int mLoginFlag;
-
     private String userPassword;
 
 //    public static boolean hasActiveInternetConnection(Context context) {
@@ -76,7 +74,9 @@ public class Cognito {
             editor.apply();
             Intent intent = new Intent(appContext, HomeActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             appContext.startActivity(intent);
+
         }
 
         @Override

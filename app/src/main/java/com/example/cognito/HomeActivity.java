@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,12 +85,15 @@ public class HomeActivity extends AppCompatActivity {
                 totalTasks.setText(R.string.some_error);
             }
         });
-
     }
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        finishAndRemoveTask();
-//    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (sharedPreferences.getString("token", null) == null) {
+            this.finish();
+        }
+    }
+
 
 }

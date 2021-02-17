@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">cognito</string>
+    <string name="app_name">CashUrDrive</string>
     <string name="Username">username</string>
     <string name="Password">password</string>
     <string name="Login">login</string>
